@@ -1,0 +1,55 @@
+
+<html>
+    <script>
+      //debounce is used for not calling contiuntionaly 100 mili second wait
+      
+      let timeout;
+       function debouncePopulateDiv(){
+        //how do you canveal a clock?
+        //clearTimeout
+        clearTimeout(timeout);
+        timeout= setTimeout(function(){
+          populateDiv()
+        },100);
+      }
+      //first method
+         function populateDiv(){
+            const a = document.getElementById("firstNumber").value;
+            const b = document.getElementById("secondNumber").value;
+            //code ans from frontend
+            // const element = document.getElementById("finalSum")
+            // element.innerHTML = parseInt(a) + parseInt(b);
+             //code ans from backend
+//axios
+// const response = await axios.get("https://sum-server.100xdevs.com/sum?a="+ a + "&b=" +b)
+// response.data
+fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" +b)
+.then(function(response){
+  response.text()
+  .then(function(ans){
+    document.getElementById("finalSum").innerHTML = ans;
+  })
+})
+    }
+
+//second method
+// async function populateDiv2(){
+//   const a = document.getElementById("firstNumber").value;
+//   const b = document.getElementById("secondNumber").value;
+
+//   const response = await fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" +b)
+//   const ans = await response.text();
+//   document.getElementById("finalSum").innerHTML = ans;
+// }
+    </script>
+  <body>
+    <input oninput="debouncePopulateDiv()" id="firstNumber" type="text" placeholder="First number"></input>
+<br></br>
+  <input oninput="debouncePopulateDiv()"  id="secondNumber" type="text" placeholder="Second number number">
+</input><br></br>
+<!-- <button onclick="populateDiv()">Calulate sum</button><br></br> -->
+<div id="finalSum"></div>
+</body>
+
+  
+</html>
