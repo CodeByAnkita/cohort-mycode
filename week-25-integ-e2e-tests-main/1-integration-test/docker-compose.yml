@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Madwomen@0711
+    ports:
+      - "5432:5432"
+# DATABASE_URL="postgresql://postgres:Madwomen@0711@localhost:5432/postgres"
