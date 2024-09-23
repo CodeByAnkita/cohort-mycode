@@ -66,9 +66,9 @@ router.get("/", authMiddleware, async (req, res) => {
         },
         include: {
             actions: {
-               include: {
+            include: {
                     type: true
-               }
+            }
             },
             trigger: {
                 include: {
